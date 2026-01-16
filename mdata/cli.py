@@ -79,7 +79,8 @@ def main():
     
     start_compact = start_fmt.replace("-", "")
     end_compact = end_fmt.replace("-", "")
-    filename = f"{ticker.upper()}_{start_compact}_{end_compact}.parquet"
+    resolution_suffix = {"second": "s", "minute": "m", "day": "d"}[args.resolution]
+    filename = f"{ticker.upper()}_{start_compact}_{end_compact}_{resolution_suffix}.parquet"
     output_path = os.path.join(args.directory, filename)
     
     df.to_parquet(output_path)
