@@ -18,11 +18,10 @@
 ## 3. Usage Cheat Sheet (Colab)
 
 ### A. Environment Setup (Run Once per Session)
-Links the Colab Secret to the environment for the CLI to see.
+Links the Colab Secret to a local config file for the CLI to see.
 ```python
-import os
-from google.colab import userdata
-os.environ["MASSIVE_API_KEY"] = userdata.get("MASSIVE_API_KEY")
+import mdata
+mdata.auth_colab()
 ```
 
 ### B. Installation
