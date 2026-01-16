@@ -25,6 +25,7 @@ def auth_colab():
         # Best-effort on platforms that don't support chmod.
         pass
 
+    print(f"Using Massive API Key: {key}")
     return _CONFIG_KEY_PATH
 
 __all__ = ["auth_colab"]

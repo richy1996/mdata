@@ -4,7 +4,6 @@ from .config import get_api_key
 class MDataClient:
     def __init__(self):
         self.api_key = get_api_key()
-        print(f"Using Massive API Key: {self.api_key}")
         self.client = RESTClient(self.api_key)
 
     def fetch_aggregates(self, ticker, start_date, end_date, resolution="minute"):
