@@ -60,6 +60,40 @@ def main():
         
     # Create DataFrame
     df = pd.DataFrame(data)
+
+    # Normalize columns from Massive aggregates
+    if {"o", "h", "l", "c", "t"}.issubset(df.columns):
+        df = df.rename(
+            columns={
+                "o": "open",
+                "h": "high",
+                "l": "low",
+                "c": "close",
+                "t": "timestamp",
+            }
+        )
+
+    # Add date/time columns in US/Eastern
+    if "timestamp" in df.columns:
+        df["datetime"] = (
+            pd.to_datetime(df["timestamp"], unit="ms")
+            .dt.tz_localize("UTC")
+            .dt.tz_convert("US/Eastern")
+        )
+        df["date"] = df["datetime"].dt.strftime("%Y%m%d").astype("uint32")
+        if args.resolution == "second":
+            df["time"] = df["datetime"].dt.strftime("%H%M%S").astype("uint32")
+        elif args.resolution == "minute":
+            df["time"] = df["datetime"].dt.strftime("%H%M").astype("uint32")
+
+    df["ticker"] = ticker.lower()
+
+    # Order columns
+    base_cols = ["open", "high", "low", "close", "date"]
+    if args.resolution in {"second", "minute"}:
+        base_cols.append("time")
+    base_cols.append("ticker")
+    df = df[base_cols]
     
     # Ensure directory exists
     if args.directory != ".":
