@@ -45,5 +45,5 @@ mdata.auth_colab()
 ### D. Loading Data
 ```python
 import pandas as pd
-df = pd.read_parquet("SPX_2026-01-15_2026-01-15.parquet")
+df = pd.read_parquet("SPX_20260115_20260115.parquet")
 ```
