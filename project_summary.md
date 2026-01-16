@@ -12,7 +12,7 @@
 ## 2. Key Features
 - **Security**: Uses **Google Colab Secrets** (`MASSIVE_API_KEY`).
 - **Smart Tickers**: Automatically prepends `I:` to indices (e.g., `SPX` -> `I:SPX`).
-- **Output**: Saves directly to **Parquet** for easy pandas loading.
+- **Output**: Saves directly to **Parquet** with normalized columns.
 - **Flexible CLI**: Supports both positional args and flags.
 
 ## 3. Usage Cheat Sheet (Colab)
@@ -47,3 +47,6 @@ mdata.auth_colab()
 import pandas as pd
 df = pd.read_parquet("SPX_20260115_20260115_d.parquet")
 ```
+
+### E. Output Columns
+Parquet includes `open`, `high`, `low`, `close`, `date` (YYYYMMDD, US/Eastern), `time` (HHMMSS for second, HHMM for minute; omitted for day), and `ticker` (lowercase).
