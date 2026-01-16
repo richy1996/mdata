@@ -77,7 +77,9 @@ def main():
     # I will simply use `{ticker}_{start_date}_{end_date}.parquet` (using the raw input strings if valid, or the formatted ones).
     # Using formatted (YYYY-MM-DD) is safer.
     
-    filename = f"{ticker.upper()}_{start_fmt}_{end_fmt}.parquet"
+    start_compact = start_fmt.replace("-", "")
+    end_compact = end_fmt.replace("-", "")
+    filename = f"{ticker.upper()}_{start_compact}_{end_compact}.parquet"
     output_path = os.path.join(args.directory, filename)
     
     df.to_parquet(output_path)
