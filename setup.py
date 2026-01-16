@@ -6,10 +6,6 @@ setup(
     packages=find_packages(),
     install_requires=[
         "massive",
-        # pandas, pyarrow, numpy are assumed to be in the environment (Colab)
-        # but listing them here for completeness if users install elsewhere
-        "pandas",
-        "pyarrow",
     ],
     entry_points={
         "console_scripts": [
