@@ -39,6 +39,7 @@ class MDataClient:
             
         # The user code example has `1, "minute"`.
         
+        aggs = []
         results = self.client.list_aggs(
             api_ticker,
             multiplier,
